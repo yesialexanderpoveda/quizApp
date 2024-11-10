@@ -1,5 +1,6 @@
 using DB;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ builder.Services.AddDbContext<QuizContext>(options =>
  options.UseSqlServer(builder.Configuration.GetConnectionString("quizConnection"));
 
 });
+
+builder.Services.AddIdentity<AplicationUser, IdentityRole>()
+   .AddEntityFrameworkStores<QuizContext>()
+   .AddDefaultTokenProviders(); 
 
 var app = builder.Build();
 
@@ -39,6 +44,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -46,3 +52,16 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+async Task CreateRolesAsync(RoleManager<IdentityRole> roleManager)
+{
+    string[] roleNames = { "ADMIN", "USER" };
+    foreach (var roleName in roleNames)
+    {
+        bool roleExists = await roleManager.RoleExistsAsync(roleName);
+        if (!roleExists)
+        {
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
+}

@@ -92,3 +92,4 @@
 /home/yapy/Documents/projects/quizApp/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
 /home/yapy/Documents/projects/quizApp/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
 /home/yapy/Documents/projects/quizApp/bin/Debug/net7.0/Mono.TextTemplating.dll
+/home/yapy/Documents/projects/quizApp/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

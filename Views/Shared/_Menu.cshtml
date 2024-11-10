@@ -1,0 +1,24 @@
+@{
+ string Rol = ViewData["UserRole"]?.ToString() ?? "GUEST";
+ string UserName = ViewData["UserName"]?.ToString() ?? "Invitado";
+}
+  
+@if(Rol == "ADMIN")
+{
+    <li><a class="waves-effect white-text" href="#!">Editar cuestionarios</a></li>
+    <li><a class="waves-effect white-text" href="#!">Eliminar cuestionarios</a></li>
+   <span>Tipo: Admin</span>
+   <span>Nombre: @UserName</span>
+}
+else if (Rol == "USER")
+{
+    <li><a class="waves-effect white-text" href="#!">Editar cuestionarios</a></li>
+    <span>Tipo: Usuario</span>
+    <span>Nombre: @UserName</span>
+}
+else
+{
+    <li><a class="waves-effect white-text" href="#!" >Registrarce</a></li>
+    <li><a class="waves-effect white-text" href="#!">Ingresar</a></li>
+}
+ 

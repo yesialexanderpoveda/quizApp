@@ -9,7 +9,7 @@ namespace DB
         public int Mistakes {get; set;}
         public string Status {get; set;}
         public string QuestionResult {get; set;} 
-        public int UserId {get; set;}
-        public Users Users {get; set;}
+        public string UserId { get; set; } // Llave foránea que enlaza con ApplicationUser
+        public AplicationUser Users { get; set; } 
     }
 }
