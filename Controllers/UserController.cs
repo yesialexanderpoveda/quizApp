@@ -4,6 +4,5 @@ namespace quizApp.Controllers;
 
 public class UserController: Controller
 {
-
-
+    
 }
