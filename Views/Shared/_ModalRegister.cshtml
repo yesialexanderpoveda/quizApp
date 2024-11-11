@@ -1,0 +1,29 @@
+@model RegisterViewModel;
+<!-- Modal de Registro -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <h4>Registrarse</h4>
+    <form asp-action="Register" asp-controller="Home" method="post">
+      <label for="registerName">Nombre:</label>
+      <input type="text" id="registerName" asp-for="Name" required>
+      <span asp-validation-for="Name" class="text-danger"></span>
+      
+      <label for="registerEmail">Correo electrónico:</label>
+      <input type="email" id="registerEmail" asp-for="Email" required>
+      <span asp-validation-for="Email" class="text-danger"></span>
+      
+      <label for="registerPassword">Contraseña:</label>
+      <input type="password" id="registerPassword" asp-for="Password" required>
+      <span asp-validation-for="Password" class="text-danger"></span>
+      
+      <button type="submit" class="btn">Registrarse</button>
+    </form>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    M.Modal.init(elems);
+});
+</script>

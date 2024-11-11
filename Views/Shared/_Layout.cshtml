@@ -36,21 +36,17 @@
             </li>
             <br>
             <li>
-                  <!-- Modal Trigger -->
-             <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Crear cuestionarios</a>
+                <!-- Modal Trigger -->
+            <li><a class="waves-effect white-text" href="#!">Crear cuestionarios</a></li>
             </li>
-
-
             <li><a class="waves-effect white-text" href="#!">Resolver cuestionarios</a></li>
-             <partial name="_Menu" />
+            <partial name="_Menu" />
         </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
-
-
     </header>
     <main>
-
+        <partial name="_ModalLogin" />
+        <partial name="_ModalRegister" />
         @RenderBody()
     </main>
 
@@ -82,27 +78,21 @@
     <script src="~/lib/materialize/js/materialize.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-         document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
-  $(document).ready(function(){
-    $('.sidenav').sidenav();
-  });
-
-  //modal
-
-   document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('.modal').modal();
-  });
-         
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, options);
+        });
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+        //modal
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, options);
+        });
+        $(document).ready(function () {
+            $('.modal').modal();
+        })
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

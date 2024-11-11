@@ -1,0 +1,27 @@
+@model LoginViewModel;
+<!-- Modal de Login -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Iniciar sesión</h4>
+    <form asp-action="Login" asp-controller="Home" method="post">
+      <label for="loginEmail">Correo electrónico:</label>
+      <input type="email" id="loginEmail" asp-for="Email" required>
+      <span asp-validation-for="Email" class="text-danger"></span>
+      
+      <label for="loginPassword">Contraseña:</label>
+      <input type="password" id="loginPassword" asp-for="Password" required>
+      <span asp-validation-for="Password" class="text-danger"></span>
+      
+      <button type="submit" class="btn">Iniciar sesión</button>
+    </form>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    M.Modal.init(elems);
+
+});
+</script>
+

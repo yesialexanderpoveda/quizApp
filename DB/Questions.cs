@@ -9,6 +9,7 @@ namespace DB
     public string WrongAnswerTwo {get; set;}
     public string WrongAnswerThree {get; set;}
     public string Technology {get; set;}
+    public bool Access {get; set;}
     public byte[] Image { get; set; }
 
  }

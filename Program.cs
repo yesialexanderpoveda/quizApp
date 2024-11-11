@@ -31,6 +31,21 @@ using (var scope = app.Services.CreateScope())
 
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    // Crear roles ADMIN y USER si no existen
+    string[] roleNames = { "ADMIN", "USER" };
+    foreach (var roleName in roleNames)
+    {
+        var roleExist = await roleManager.RoleExistsAsync(roleName);
+        if (!roleExist)
+        {
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -51,17 +66,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+
 app.Run();
 
-async Task CreateRolesAsync(RoleManager<IdentityRole> roleManager)
-{
-    string[] roleNames = { "ADMIN", "USER" };
-    foreach (var roleName in roleNames)
-    {
-        bool roleExists = await roleManager.RoleExistsAsync(roleName);
-        if (!roleExists)
-        {
-            await roleManager.CreateAsync(new IdentityRole(roleName));
-        }
-    }
-}

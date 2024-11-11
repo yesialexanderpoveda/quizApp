@@ -7,18 +7,30 @@
 {
     <li><a class="waves-effect white-text" href="#!">Editar cuestionarios</a></li>
     <li><a class="waves-effect white-text" href="#!">Eliminar cuestionarios</a></li>
-   <span>Tipo: Admin</span>
-   <span>Nombre: @UserName</span>
+    <span>Administrador: @UserName</span>
+     <form asp-action="Logout" method="post">
+    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+</form>
+
 }
 else if (Rol == "USER")
 {
-    <li><a class="waves-effect white-text" href="#!">Editar cuestionarios</a></li>
-    <span>Tipo: Usuario</span>
-    <span>Nombre: @UserName</span>
+    <span>Usuario: @UserName</span>
+  <form asp-action="Logout" method="post">
+    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+</form>
+
 }
 else
 {
-    <li><a class="waves-effect white-text" href="#!" >Registrarce</a></li>
-    <li><a class="waves-effect white-text" href="#!">Ingresar</a></li>
+    <li>
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Registrarce</a>
+    </li>
+    <li>
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Ingresar</a>
+    </li>
 }
+
+
+
  
