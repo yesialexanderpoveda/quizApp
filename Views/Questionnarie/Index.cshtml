@@ -1,0 +1,40 @@
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+<h3> Creando cuestionario </h3>
+<ol>
+<li>Elejir el tema de tu interes</li>
+<li>Rango de tiempo en minutos para resolver las preguntas</li>
+<li>Crear pregunta</li>
+<li>Crear cuatro respuestas, solo una es verdadera</li>
+</ol>
+<div class="row">
+    <br>
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <label for="first_name">Nombre Cuestionario</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate">
+                <label for="last_name">Resolver en m</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input disabled value="preguntas y respuestas" id="disabled" type="Number" class="validate">
+                <label for="disabled">Pregunta</label>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br><br>
+</div>
+
+

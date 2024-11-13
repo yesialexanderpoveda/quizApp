@@ -15,6 +15,30 @@
             min-height: 100vh;
             flex-direction: column;
         }
+        .title-3d {
+            margin-left: 0.4em;
+            font-size: 1.8rem;
+            /* Tamaño del texto */
+            font-weight: bold;
+            /* Grosor del texto */
+            color: #2196f3;
+            /* Color principal del texto */
+            position: relative;
+            /* Opcional: convierte el texto a mayúsculas */
+            letter-spacing: 2px;
+            /* Espaciado entre letras */
+            text-shadow: 1px 1px 0 #1976d2,
+                /* Sombra para dar profundidad */
+                2px 2px 0 #1565c0,
+                3px 3px 0 #0d47a1,
+                4px 4px 0 #0b3d91,
+                5px 5px 0 #08306b;
+
+            /* Puedes añadir más capas de sombra si deseas una mayor profundidad */
+            position: relative;
+            top: -0.2em;
+        }
+
         main {
             flex: 1 0 auto;
         }
@@ -35,14 +59,59 @@
                 <div class="divider"></div>
             </li>
             <br>
+     
+
             <li>
-                <!-- Modal Trigger -->
-            <li><a class="waves-effect white-text" href="#!">Crear cuestionarios</a></li>
+            <a href="/Questionnarie/Index" class="waves-effect white-text">Crear cuestionarios</a>
+            
+            </li>
             </li>
             <li><a class="waves-effect white-text" href="#!">Resolver cuestionarios</a></li>
             <partial name="_Menu" />
         </ul>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+
+        <div style="position: relative; top:0.4em" class="row">
+
+
+            <div class="col s12 m4 l2">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                        style="font-size: 2.2em; position: relative; top: 0.3em;" class="material-icons">menu</i></a>
+
+                <span class="title-3d">QuizApp</span>
+            </div>
+
+
+            <div class="col s12 m4 l8">
+                <nav class="nav-wrapper blue-grey lighten-4">
+                    <!-- Cambiar filtro del informacion segun tipo del usuario
+     1.# tipo invitado
+     2.# tipo usuario
+     3.# tipo administrador
+    -->
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" placeholder="Solo cuestionarios" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </nav>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
     </header>
     <main class="blue-grey lighten-4">
         <partial name="_ModalLogin" />
@@ -55,14 +124,16 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Cuestinarios</h5>
+                    <h5 class="white-text">Cuestionarios</h5>
+                    <p class="grey-text text-lighten-4">Aquí generas tus propios cuestionarios</p>
+                    <p class="grey-text text-lighten-4">Para aprender vocabulario</p>
                     <p class="grey-text text-lighten-4">Para memorizar respuestas</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Aplicativos</h5>
+                    <h5 class="white-text">Conoce más Aplicativos</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Gitlab</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Github</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Repositorios Gitlab</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Repositorios Github</a></li>
                     </ul>
                 </div>
             </div>

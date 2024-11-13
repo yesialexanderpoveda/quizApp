@@ -47,6 +47,7 @@ namespace quizApp.Controllers
 
         // Acción para Registrar un nuevo usuario
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -62,8 +63,6 @@ namespace quizApp.Controllers
 
                     Console.WriteLine("registro exitoso");
                     return RedirectToAction("Index"); // Redirigir al Index
-
-
                 }
                 Console.WriteLine("Register error");
                 Console.WriteLine(result);
@@ -78,6 +77,7 @@ namespace quizApp.Controllers
 
         // Acción para Iniciar sesión de un usuario
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -145,6 +145,9 @@ namespace quizApp.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+
+      
 
         // Acción para la página de privacidad (puedes personalizarla más)
         public IActionResult Privacy()
