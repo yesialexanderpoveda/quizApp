@@ -22,15 +22,16 @@ namespace quizApp.Controllers
         // Acción Index: Gestión de roles y usuario autenticado
         public async Task<IActionResult> Index()
         {
-            string userRole = "GUEST";
-            string UserName = "Invitado";
-            
+              
 
-         
-            // Pasar la información a la vista
-            ViewData["UserRole"] = userRole;
-            ViewData["UserName"] = User.Identity.IsAuthenticated ? User.Identity.Name : "Invitado";
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Question() 
+        {
+
+             return View();
         }
         
         }
