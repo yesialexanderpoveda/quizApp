@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+
 namespace quizApp.Models;
 
 public class QuestionnarieViewModel 

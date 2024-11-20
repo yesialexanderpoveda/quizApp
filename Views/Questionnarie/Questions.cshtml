@@ -1,0 +1,43 @@
+@{
+    var questionList = ViewBag.questionList as IEnumerable<SaveQuestionDtos>;
+}
+
+@if (questionList != null && questionList.Any())
+{
+    <ul class="collapsible">
+    @foreach (var question in questionList)
+        {
+            <li>
+                <div class="collapsible-header"><i class="material-icons">psychology_alt</i>First</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Second</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Third</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">psychology_alt</i>First</div>
+      <div class="collapsible-body"><span>Sin preguntas</span></div>
+    </li>
+      <li>
+      <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+ 
+  </ul>
+}
+

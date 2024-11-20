@@ -1,2 +1,54 @@
+@model QuestionnarieViewModel;   
 
+<div id="modal" class="modal grey darken-3">
+    <div class="modal-content">
+        <h4 class="flow-text white-text">Preguntas y respuestas</h4>
+        <form asp-action="Question" asp-controller="Questionnarie" method="post" class="col s12" >
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea type="text" class="materialize-textarea" id="Question" asp-for="Question" required></textarea>
+                    <label for="Question">Escriba la pregunta</label>
+                    <span asp-validation-for="Question" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea type="text" class="materialize-textarea" id="RigthAnswer" asp-for="RigthAnswer" required></textarea>
+                    <label for="RigthAnswer">Respuesta válida</label>
+                    <span asp-validation-for="RigthAnswer" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea type="text" class="materialize-textarea" id="WrongAnswer" asp-for="WrongAnswer" required></textarea>
+                    <label for="WrongAnswer">Respuesta erronea #1</label>
+                    <span asp-validation-for="WrongAnswer" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea type="text" class="materialize-textarea" id="WrongAnswerTwo" asp-for="WrongAnswerTwo" required></textarea>
+                    <label for="WrongAnswerTwo">Respuesta erronea #2</label>
+                    <span asp-validation-for="WrongAnswerTwo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea type="text" class="materialize-textarea" id="WrongAnswerThree" asp-for="WrongAnswerThree" required></textarea>
+                    <label for="WrongAnswerThree">Respuesta erronea #3</label>
+                    <span asp-validation-for="WrongAnswerThree" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn">Agregar</button>
+            
+        </form>
+    </div>
+</div>
 
+<script>
+    // Inicialización del modal
+    document.addEventListener('DOMContentLoaded', function () {
+        let elems = document.querySelectorAll('.modal');
+        let instances = M.Modal.init(elems); // Sin opciones adicionales
+    });
+</script>

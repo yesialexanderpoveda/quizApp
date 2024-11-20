@@ -1,99 +1,107 @@
 @{
-    ViewData["Title"] = "Index";
+  ViewData["Title"] = "Crear Quiz";
 }
 
 <div class="container">
-   <blockquote class="teal-text">
+  <blockquote class="teal-text">
     <h3 class="flow-text grey-text text-darken-3" style="font-size: 1.8em;">Pasos para crear un cuestionario</h3>
-    </blockquote>
-<ol>
-<li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Elegir el tema de tu interés.</li>
-<li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Rango de tiempo en minutos para resolver las preguntas.</li>
-<li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Descripción del cuestionario.</li>
-<li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Crear pregunta.</li>
-<li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Cada pregunta tiene cuatro respuestas, solo una es verdadera.</li>
-</ol>
-<div class="row">
+  </blockquote>
+  <ol>
+    <li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Elegir el tema de tu interés.</li>
+    <li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Rango de tiempo en minutos para resolver las
+      preguntas.</li>
+    <li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Descripción del cuestionario.</li>
+    <li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Crear pregunta.</li>
+    <li class="flow-text grey-text text-darken-3" style="font-size: 1.1em;">Cada pregunta tiene cuatro respuestas, solo
+      una es verdadera.</li>
+  </ol>
+  <div class="row">
     <br>
     <form class="col s12">
 
-     <fieldset class="card-panel grey darken-3" style="border: 1px solid #0d47a1; border-radius: 0.3em;">
-     <legend class="blue darken-4" style="padding: 0.5em; border-radius: 0.5em;">
-      <h4 class="flow-text white-text" style="font-size: 1.3em;">
-       Crear cuestionario
-      </h4></legend>
+      <fieldset class="card-panel grey darken-3" style="border: 1px solid #0d47a1; border-radius: 0.3em;">
+        <legend class="blue darken-4" style="padding: 0.5em; border-radius: 0.5em;">
+          <h4 class="flow-text white-text" style="font-size: 1.3em;">
+            Crear cuestionario
+          </h4>
+        </legend>
         <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="tema" id="first_name" type="text" class="validate">
-                <label for="first_name">Nombre Cuestionario</label>
-            </div>
-            <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Minutos</label>
-            </div>
+          <div class="input-field col s6">
+            <input placeholder="tema" id="first_name" type="text" class="validate">
+            <label for="first_name">Nombre Cuestionario</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Minutos</label>
+          </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-           <textarea id="textarea1" class="materialize-textarea"></textarea>
-           <label for="textarea1">Descripción</label>
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Descripción</label>
           </div>
         </div>
 
-             <div class="row">
-            <div class="file-field input-field col s6">
-                <div class="btn">
-                    <span>Imagen</span>
-                  <input type="file">
-                </div>
-                <div class="file-path-wrapper">
-                   <input class="file-path validate" type="text">
-                </div>
+        <div class="row">
+          <div class="file-field input-field col s6">
+            <div class="btn">
+              <span>Imagen</span>
+              <input type="file">
             </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
 
 
-            <div class="input-field col s6">
-               
-             <div class="switch">
-               <label>
+          <div class="input-field col s6">
+
+            <div class="switch">
+              <label>
                 privado
-               <input type="checkbox">
-               <span class="lever"></span>
+                <input type="checkbox">
+                <span class="lever"></span>
                 público
-               </label>
+              </label>
             </div>
 
-            </div>
+          </div>
         </div>
 
-       <div class="row">
+        <div class="row">
 
-       <div class="input-field col s12">
-        
-         <a id="scale-demo" href="#!" class="btn-floating btn-large scale-transition">
-                  <i class="material-icons">add</i>
-             </a>
-              <span class="white-text">Pregunta y respuestas</span>
-       </div>
+             <div class="input-field col s12">
+        <!-- Botón que dispara el modal -->
+        <a href="#modal" class="waves-effect modal-trigger btn-floating btn-large scale-transition">
+            <i class="material-icons">add</i>
+        </a>
+        <span class="white-text">Pregunta y respuestas</span>
+    </div>
+
+         
+          <!-- vista parcial -->
+          <partial name="Questions" />
+        </div>
 
 
-       <!-- vista parcial -->
-       <div>Lista de preguntas agrgadas con obcion de eliminar </div>
-</div>
-           
-            
-         </fieldset>
+      </fieldset>
     </form>
-</div>
+     <partial name="Question" />
+  </div>
 
-<br><br>
+  <br><br>
 </div>
 
 
 <script>
 
-   document.querySelector("#scale-demo").addEventListener('click', ()=>{
 
-      
-   })
-      
+
+  // Inicializar el colapsable al cargar la página
+  document.addEventListener('DOMContentLoaded', function () {
+    let elems = document.querySelectorAll('.collapsible');
+    let instances = M.Collapsible.init(elems, {}); // Opciones predeterminadas
+  });
+
+    
 </script>

@@ -15,6 +15,7 @@
             min-height: 100vh;
             flex-direction: column;
         }
+
         .title-3d {
             margin-left: 0.4em;
             font-size: 1.8rem;
@@ -59,11 +60,11 @@
                 <div class="divider"></div>
             </li>
             <br>
-     
+
 
             <li>
-            <a href="/Questionnarie/Index" class="waves-effect white-text">Crear cuestionarios</a>
-            
+                <a href="/Questionnarie/Index" class="waves-effect white-text">Crear cuestionarios</a>
+
             </li>
             </li>
             <li><a class="waves-effect white-text" href="#!">Resolver cuestionarios</a></li>
@@ -103,15 +104,6 @@
 
         </div>
 
-
-
-
-
-
-
-
-
-
     </header>
     <main class="blue-grey lighten-4">
         <partial name="_ModalLogin" />
@@ -150,20 +142,18 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, options);
+            let elems = document.querySelectorAll('.sidenav');
+            let instances = M.Sidenav.init(elems, options);
         });
         $(document).ready(function () {
             $('.sidenav').sidenav();
         });
         //modal
         document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.modal');
-            var instances = M.Modal.init(elems, options);
+            let elems = document.querySelectorAll('.modal');
+            let instances = M.Modal.init(elems, options);
         });
-        $(document).ready(function () {
-            $('.modal').modal();
-        })
+     
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
