@@ -1,3 +1,6 @@
+@{
+    bool showModal = ViewContext.HttpContext.Request.Query["showModal"] == "true";
+}
 @model LoginViewModel;
 <!-- Modal de Login -->
 <div id="modal1" class="modal">
@@ -16,6 +19,19 @@
     </form>
   </div>
 </div>
+
+@if (ViewContext.HttpContext.Request.Query["showModal"] == "true")
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = document.getElementById('modal1');
+            if (modal) {
+                var instance = M.Modal.init(modal);
+                instance.open();
+            }
+        });
+    </script>
+}
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

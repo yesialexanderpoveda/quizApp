@@ -1,43 +1,83 @@
+@model List<SaveQuestionDtos>
 @{
     var questionList = ViewBag.questionList as IEnumerable<SaveQuestionDtos>;
 }
 
+<style>
+    .collapsible {
+
+        border: none !important;
+
+    }
+
+    .collapsible li {
+
+        border: none !important;
+
+    }
+    div.right{
+
+     margin-left: 1.5em;
+    }
+</style>
+
 @if (questionList != null && questionList.Any())
 {
-    <ul class="collapsible">
+    <ul class="collapsible grey darken-3">
     @foreach (var question in questionList)
         {
             <li>
-                <div class="collapsible-header"><i class="material-icons">psychology_alt</i>First</div>
-                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Second</div>
-                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Third</div>
-                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                <div class="collapsible-header grey darken-3">
+                    <i class="material-icons left teal-text">not_listed_location</i>
+                    <span class="white-text" style="font-size: smaller;">@question.Question</span>
+                    <div class="right">
+                        <a href="#settings" class="btn-floating btn-small teal tooltipped" data-position="top"
+                            data-tooltip="Configurar">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <form asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="questionText" value="@question.Question" />
+                            <button type="submit" class="btn-floating btn-small red tooltipped" data-position="top"
+                                data-tooltip="Eliminar">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="collapsible-body white-text">
+                    <p>
+                        <i class="material-icons teal-text">check_circle</i>
+                       <span class="teal-text">Respuesta correcta:</span> <strong>@question.RigthAnswer</strong>
+                    </p>
+                    <p>
+                        <i class="material-icons red-text text-darken-4">close</i>
+                        <strong>@question.WrongAnswer</strong>
+                    </p>
+                    <p>
+                        <i class="material-icons red-text text-darken-4">close</i>
+                        <strong>@question.WrongAnswerTwo</strong>
+                    </p>
+                    <p>
+                        <i class="material-icons red-text text-darken-4">close</i>
+                        <strong>@question.WrongAnswerThree</strong>
+                    </p>
+                </div>
             </li>
         }
     </ul>
 }
 else
 {
-  <ul class="collapsible">
+    <ul class="collapsible grey darken-3">
     <li>
-      <div class="collapsible-header"><i class="material-icons">psychology_alt</i>First</div>
-      <div class="collapsible-body"><span>Sin preguntas</span></div>
+        <div class="collapsible-header grey darken-3 white-text">
+            <i class="material-icons">not_listed_location</i>
+            Sin preguntas
+        </div>
+        <div class="collapsible-body white-text">
+            <p>No hay preguntas para mostrar en este momento.</p>
+        </div>
     </li>
-      <li>
-      <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">psychology_alt</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
- 
-  </ul>
+</ul>
 }
-

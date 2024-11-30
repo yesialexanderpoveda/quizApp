@@ -2,10 +2,7 @@ using DB;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
-// Usa los namespaces correctos para tus interfaces y repositorios
-using IRepository; // Cambia según tu estructura de proyecto
+using IRepository;
 using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,29 +15,35 @@ builder.Services.AddDbContext<QuizContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("quizConnection"));
 });
 
-// Registra ITemporalQuestions y TemporalQRepository
-builder.Services.AddScoped(typeof(ITemporalQuestions<>), typeof(TemporalQRepository<>));
-
-
 
 builder.Services.AddIdentity<AplicationUser, IdentityRole>()
-   .AddEntityFrameworkStores<QuizContext>()
-   .AddDefaultTokenProviders();
+    .AddEntityFrameworkStores<QuizContext>()
+    .AddDefaultTokenProviders();
 
+// Configurar caché distribuido y sesiones
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(20);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
+// Configurar migración de base de datos
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<QuizContext>();
     context.Database.Migrate(); 
 }
 
+// Configurar roles
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-    // Crear roles ADMIN y USER si no existen
     string[] roleNames = { "ADMIN", "USER" };
     foreach (var roleName in roleNames)
     {
@@ -61,11 +64,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "default",

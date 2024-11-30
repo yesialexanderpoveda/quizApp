@@ -24,6 +24,8 @@ namespace quizApp.Controllers
         // Acción Index: Gestión de roles y usuario autenticado
         public async Task<IActionResult> Index()
         {
+
+            
             string userRole = "GUEST";
             string UserName = "Invitado";
 
@@ -147,6 +149,15 @@ namespace quizApp.Controllers
         }
 
 
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> Authorization()
+        
+        {
+                return  View();
+        }
       
 
         // Acción para la página de privacidad (puedes personalizarla más)

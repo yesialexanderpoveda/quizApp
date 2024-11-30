@@ -1,14 +1,15 @@
 @{
- string Rol = ViewData["UserRole"]?.ToString() ?? "GUEST";
- string UserName = ViewData["UserName"]?.ToString() ?? "Invitado";
+    string Rol = ViewData["UserRole"]?.ToString() ?? "GUEST";
+    string UserName = ViewData["UserName"]?.ToString() ?? "Invitado";
 }
-  
-@if(Rol == "ADMIN")
+
+
+@if (Rol == "ADMIN")
 {
     <li><a class="waves-effect white-text" href="#!">Editar cuestionarios</a></li>
     <li><a class="waves-effect white-text" href="#!">Eliminar cuestionarios</a></li>
     <span>Administrador: @UserName</span>
-     <form asp-action="Logout" method="post">
+    <form asp-action="Logout" method="post">
     <button type="submit" class="btn btn-danger">Cerrar sesión</button>
 </form>
 
@@ -16,7 +17,7 @@
 else if (Rol == "USER")
 {
     <span>Usuario: @UserName</span>
-  <form asp-action="Logout" method="post">
+    <form asp-action="Logout" method="post">
     <button type="submit" class="btn btn-danger">Cerrar sesión</button>
 </form>
 
@@ -25,12 +26,11 @@ else
 {
     <li>
     <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Registrarce</a>
-    </li>
+</li>
     <li>
     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Ingresar</a>
-    </li>
+</li>
 }
 
 
 
- 

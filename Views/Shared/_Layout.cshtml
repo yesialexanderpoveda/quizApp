@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool showModal = ViewContext.HttpContext.Request.Query["showModal"] == "true";
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -68,6 +71,7 @@
             </li>
             </li>
             <li><a class="waves-effect white-text" href="#!">Resolver cuestionarios</a></li>
+             <li><a class="waves-effect white-text" href="#!">Gestionar calendario</a></li>
             <partial name="_Menu" />
         </ul>
 
@@ -137,13 +141,17 @@
             </div>
         </div>
     </footer>
+
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/materialize/js/materialize.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             let elems = document.querySelectorAll('.sidenav');
-            let instances = M.Sidenav.init(elems, options);
+            let instances = M.Sidenav.init(elems, {});
         });
         $(document).ready(function () {
             $('.sidenav').sidenav();
@@ -151,9 +159,9 @@
         //modal
         document.addEventListener('DOMContentLoaded', function () {
             let elems = document.querySelectorAll('.modal');
-            let instances = M.Modal.init(elems, options);
+            let instances = M.Modal.init(elems, {});
         });
-     
+
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

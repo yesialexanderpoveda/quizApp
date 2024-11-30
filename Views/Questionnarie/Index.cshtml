@@ -1,5 +1,6 @@
 @{
   ViewData["Title"] = "Crear Quiz";
+  var questionList = ViewBag.questionList as IEnumerable<SaveQuestionDtos>;
 }
 
 <div class="container">
@@ -17,78 +18,76 @@
   </ol>
   <div class="row">
     <br>
-    <form class="col s12">
-
+    <form id="questionnaireForm" asp-action="CreateQuestionnarie" method="post" class="col s12">
       <fieldset class="card-panel grey darken-3" style="border: 1px solid #0d47a1; border-radius: 0.3em;">
         <legend class="blue darken-4" style="padding: 0.5em; border-radius: 0.5em;">
           <h4 class="flow-text white-text" style="font-size: 1.3em;">
             Crear cuestionario
           </h4>
         </legend>
+
         <div class="row">
+          <div class="row no-margin">
+            <div class="input-field col s12">
+              <!-- Botón que dispara el modal -->
+              <a href="#modal" class="waves-effect modal-trigger btn-floating btn-medium scale-transition">
+                <i class="material-icons">add</i>
+              </a>
+              <span class="grey-text text-lighten-2" style="font-size: x-small;">Agrega las preguntas y respuestas que consideres necesarias</span>
+            </div>
+          </div>
+
           <div class="input-field col s6">
-            <input placeholder="tema" id="first_name" type="text" class="validate">
-            <label for="first_name">Nombre Cuestionario</label>
+            <input placeholder="Tema" id="GroupQuestionName" name="GroupQuestionName" type="text" class="validate">
+            <label for="GroupQuestionName">Nombre Cuestionario</label>
           </div>
           <div class="input-field col s6">
-            <input id="last_name" type="text" class="validate">
-            <label for="last_name">Minutos</label>
+            <input id="ResponseTimeInMinutes" name="ResponseTimeInMinutes" type="number" class="validate">
+            <label for="ResponseTimeInMinutes">Minutos</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
-            <label for="textarea1">Descripción</label>
+            <textarea id="Description" name="Description" class="materialize-textarea"></textarea>
+            <label for="Description">Descripción</label>
           </div>
         </div>
-
         <div class="row">
           <div class="file-field input-field col s6">
             <div class="btn">
               <span>Imagen</span>
-              <input type="file">
+              <input id="Image" name="Image" type="file">
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
             </div>
           </div>
-
-
           <div class="input-field col s6">
-
             <div class="switch">
               <label>
-                privado
-                <input type="checkbox">
+                Privado
+                <input id="Access" name="Access" type="checkbox">
                 <span class="lever"></span>
-                público
+                Público
               </label>
             </div>
-
           </div>
         </div>
-
-        <div class="row">
-
-             <div class="input-field col s12">
-        <!-- Botón que dispara el modal -->
-        <a href="#modal" class="waves-effect modal-trigger btn-floating btn-large scale-transition">
-            <i class="material-icons">add</i>
-        </a>
-        <span class="white-text">Pregunta y respuestas</span>
-    </div>
-
-         
-          <!-- vista parcial -->
-          <partial name="Questions" />
-        </div>
-
-
+        @if (questionList != null && questionList.Any())
+        {
+          <button type="submit" class="btn">Crear Cuestionario</button>
+        }
       </fieldset>
     </form>
-     <partial name="Question" />
-  </div>
+    <!-- Vista parcial para preguntas -->
 
+
+    <!-- Vista parcial adicional -->
+    <partial name="Question" />
+  </div>
+  <div>
+    <partial name="Questions" />
+  </div>
   <br><br>
 </div>
 
@@ -103,5 +102,9 @@
     let instances = M.Collapsible.init(elems, {}); // Opciones predeterminadas
   });
 
-    
+
+  // peticion
+
+
+
 </script>
