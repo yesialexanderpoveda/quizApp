@@ -114,17 +114,20 @@ namespace quizApp.Controllers
         }
 
 
-        [HttpPost]
+       /*  [HttpPost]
         public async Task<IActionResult> CreateQuestionnarie(IFormCollection form)
         {
             try
             {
+
+                Console.WriteLine("controlador CreateQuestionnarie");
                 var groupQuestionName = form["GroupQuestionName"];
                 if (!int.TryParse(form["ResponseTimeInMinutes"], out var responseTime) || responseTime <= 0)
                 {
                     TempData["Error"] = "El tiempo de respuesta debe ser un número válido mayor a 0.";
                     return RedirectToAction("Index");
                 }
+
                 var description = form["Description"];
                 var isPublic = form["Access"] == "on";
                 var image = form.Files["Image"];
@@ -139,7 +142,7 @@ namespace quizApp.Controllers
                     TempData["Error"] = "Debe completar los campos requeridos.";
                     return RedirectToAction("Index");
                 }
-
+                Console.WriteLine("Agregando la imagen  controlador");
                 if (image != null && image.Length > 0)
                 {
                     var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
@@ -158,20 +161,37 @@ namespace quizApp.Controllers
                     }
                 }
 
-                // Simular guardar en base de datos
-
-
-
-                var questionnaire = new
+                var groupQuestions = new GroupQuestions
                 {
-                    Name = groupQuestionName,
-                    Time = responseTime,
+                    GroupQuestionName = groupQuestionName,
+                    ResponseTimeInMinutes = responseTime,
                     Description = description,
-                    Access = isPublic,
-                    ImageName = image?.FileName
+                    Access = isPublic
                 };
 
-               /*  _repository.AddGroupQuestion();        */ 
+                if (image != null && image.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await image.CopyToAsync(memoryStream);
+                        groupQuestions.Image = memoryStream.ToArray();
+                    }
+                }
+                Console.WriteLine("Agregando las preguntas  desde el controlador");
+                var questionDtos = HttpContext.Session.Get<List<SaveQuestionDtos>>(SessionKey) ?? new List<SaveQuestionDtos>();
+                var questions = questionDtos.Select(dto => new Questions
+                {
+                    Question = dto.Question,
+                    RigthAnswer = dto.RigthAnswer,
+                    WrongAnswer = dto.WrongAnswer,
+                    WrongAnswerTwo = dto.WrongAnswerTwo,
+                    WrongAnswerThree = dto.WrongAnswerThree,
+                    GroupQuestions = groupQuestions
+                }).ToList();
+
+
+                Console.WriteLine("Guardando los valores desde el controlador hacia repository");
+                await _repository.AddGroupQuestionAsync(groupQuestions, questions);
 
                 TempData["Success"] = "Cuestionario creado exitosamente.";
                 return RedirectToAction("Index");
@@ -182,6 +202,7 @@ namespace quizApp.Controllers
                 return RedirectToAction("Index");
             }
         }
+ */
 
         private IActionResult Questions()
         {

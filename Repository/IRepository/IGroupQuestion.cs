@@ -7,7 +7,7 @@ public interface IGroupQuestion<T>
 {
 
     // cambiar parametros de entrada
-    void AddGroupQuestion(GroupQuestions group, Questions questions);                
+    public Task AddGroupQuestionAsync(GroupQuestions group, List<Questions> questions);            
     void UpdateGroupQuestion(int Id);             
     void RemoveGroupQuestion(int Id);            
     List<T>  GetGroupQuestion(int Id);                          

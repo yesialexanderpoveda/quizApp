@@ -8,30 +8,47 @@ using Microsoft.EntityFrameworkCore;
 namespace IRepository
 {
 
-public class GroupQuestionRepository: IGroupQuestion<GroupQuestions>
-{
+    public class GroupQuestionRepository : IGroupQuestion<GroupQuestions>
+    {
 
-     private readonly DbContext _context;
+        private readonly DbContext _context;
 
         public GroupQuestionRepository(DbContext context)
         {
             _context = context;
         }
 
-        // Agregar un grupo de preguntas
-        public async void AddGroupQuestion(GroupQuestions group, Questions questions)
+        public async Task AddGroupQuestionAsync(GroupQuestions group, List<Questions> questions)
         {
+            try
+            {
+                Console.WriteLine("Creando grupo de preguntas...");
 
-             Console.WriteLine("Creando");
+                _context.Set<GroupQuestions>().Add(group);
+                await _context.SaveChangesAsync();
 
-            _context.Set<GroupQuestions>().Add(group);
-             
-             await _context.SaveChangesAsync();
+                Console.WriteLine($"El ID generado del grupo es: {group.GroupQuestionId}");
+               
+                if (questions != null && questions.Count > 0)
+                {
+                    foreach (var question in questions)
+                    {
+                        question.GroupQuestionId = group.GroupQuestionId; 
+                        _context.Set<Questions>().Add(question);
+                    }
 
-            int generatedId = group.GroupQuestionId;
+                    await _context.SaveChangesAsync();
+                }
 
-            Console.WriteLine($"El ID generado es: {generatedId}");
+                Console.WriteLine("Grupo y preguntas guardados exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al guardar el grupo y las preguntas: {ex.Message}");
+                throw;
+            }
         }
+
 
         // Actualizar un grupo de preguntas
         public void UpdateGroupQuestion(int id)
@@ -87,7 +104,7 @@ public class GroupQuestionRepository: IGroupQuestion<GroupQuestions>
         // Agregar una pregunta a un grupo existente
         public void AddQuestion()
         {
-          
+
         }
 
         // Actualizar una pregunta por ID
@@ -126,6 +143,6 @@ public class GroupQuestionRepository: IGroupQuestion<GroupQuestions>
                 Console.WriteLine(question.Question);
             }
         }
-}  
+    }
 
 }

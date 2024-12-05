@@ -16,7 +16,11 @@ namespace DB
         public DbSet<Result> Result { get; set;}
    protected override void OnModelCreating(ModelBuilder modelBuilder)
    {
+
       base.OnModelCreating(modelBuilder);
+         modelBuilder.Entity<AplicationUser>()
+        .HasIndex(u => u.Email)
+        .IsUnique();
       modelBuilder.Entity<GroupQuestions>().HasKey(g => g.GroupQuestionId);
       modelBuilder.Entity<Questions>().HasKey(q => q.QuestionsId);
       modelBuilder.Entity<Result>().HasKey(r => r.ResultId);

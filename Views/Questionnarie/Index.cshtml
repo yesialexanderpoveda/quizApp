@@ -18,7 +18,7 @@
   </ol>
   <div class="row">
     <br>
-    <form id="questionnaireForm" asp-action="CreateQuestionnarie" method="post" class="col s12">
+    <form asp-action="CreateQuestionnarie" asp-controller="Questionnarie" method="post">
       <fieldset class="card-panel grey darken-3" style="border: 1px solid #0d47a1; border-radius: 0.3em;">
         <legend class="blue darken-4" style="padding: 0.5em; border-radius: 0.5em;">
           <h4 class="flow-text white-text" style="font-size: 1.3em;">
@@ -27,16 +27,6 @@
         </legend>
 
         <div class="row">
-          <div class="row no-margin">
-            <div class="input-field col s12">
-              <!-- Botón que dispara el modal -->
-              <a href="#modal" class="waves-effect modal-trigger btn-floating btn-medium scale-transition">
-                <i class="material-icons">add</i>
-              </a>
-              <span class="grey-text text-lighten-2" style="font-size: x-small;">Agrega las preguntas y respuestas que consideres necesarias</span>
-            </div>
-          </div>
-
           <div class="input-field col s6">
             <input placeholder="Tema" id="GroupQuestionName" name="GroupQuestionName" type="text" class="validate">
             <label for="GroupQuestionName">Nombre Cuestionario</label>
@@ -86,6 +76,16 @@
     <partial name="Question" />
   </div>
   <div>
+    <div class="row no-margin">
+      <div class="input-field col s12">
+        <!-- Botón que dispara el modal -->
+        <a href="#modal" class="waves-effect modal-trigger btn-floating btn-medium scale-transition">
+          <i class="material-icons">add</i>
+        </a>
+        <span class="grey-text text-lighten-2" style="font-size: x-small;">Agrega las preguntas y respuestas que
+          consideres necesarias</span>
+      </div>
+    </div>
     <partial name="Questions" />
   </div>
   <br><br>

@@ -9,11 +9,7 @@ namespace DB
     public string WrongAnswer { get; set; }
     public string WrongAnswerTwo { get; set; }
     public string WrongAnswerThree { get; set; }
-
-    // Foreign Key
     public int GroupQuestionId { get; set; }
-
-    // Navigation Property
     public GroupQuestions GroupQuestions { get; set; }  
  }
 }
